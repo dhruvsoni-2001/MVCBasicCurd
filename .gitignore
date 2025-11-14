@@ -1,0 +1,78 @@
+# Visual Studio / IDE
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+artifacts/
+out/
+publish/
+
+# Rider
+.idea/
+
+# NuGet and packaging
+*.nupkg
+packages/
+
+# Dotnet
+project.lock.json
+project.fragment.lock.json
+
+# ASP.NET Core / app secrets and env-specific settings
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+secrets/*.json
+
+# Publish/profile user overrides
+*.Publish.xml
+Properties/PublishProfiles/*.pubxml.user
+
+# Logs, temp files
+*.log
+logs/
+tmp/
+temp/
+
+# Test results / coverage
+TestResults/
+*.coverage
+*.coveragexml
+coverage/
+
+# Database files (local/dev)
+*.mdf
+*.ldf
+*.sqlite
+*.db
+*.db-journal
+
+# Node / client-side
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Certificates and secrets
+*.pfx
+*.key
+
+# VSIX / extensions
+*.vsix
+
+# Ignore compiled Razor-generated files (if any)
+*.g.cs
+*.g.i.cs

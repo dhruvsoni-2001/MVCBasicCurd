@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MVCBasicCurd.Models.User>
+@{
+    ViewData["Title"] = "Admin - Users";
+}
+<h1>Users</h1>
+<a href="/Admin/Create">Create new user</a>
+<table class="table">
+    <thead>
+        <tr><th>Business Id</th><th>Name</th><th>Email</th><th>Phone</th><th>Roles</th><th>Created</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.BusinessUserId</td>
+                <td>@u.FullName</td>
+                <td>@u.Email</td>
+                <td>@u.PhoneNumber</td>
+                <td>
+                    @if (u.UserRoles != null && u.UserRoles.Any())
+                    {
+                        @string.Join(", ", u.UserRoles.Select(ur => ur.Role?.Name))
+                    }
+                    else
+                    {
+                        <em>None</em>
+                    }
+                </td>
+                <td>@u.CreatedAt.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>

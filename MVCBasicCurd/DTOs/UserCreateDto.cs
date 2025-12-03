@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MVCBasicCurd.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVCBasicCurd.DTOs
 {
@@ -15,6 +16,16 @@ namespace MVCBasicCurd.DTOs
 
         [Required, MaxLength(200)]
         public string Address { get; set; } = string.Empty;
+
+        // --- NEW FIELDS FOR ACCOUNT CREATION ---
+        [Required]
+        [Display(Name = "Account Type")]
+        public AccountType AccountType { get; set; } = AccountType.Savings;
+
+        [Required]
+        [Range(0, 1000000, ErrorMessage = "Initial balance must be between 0 and 1M")]
+        [Display(Name = "Opening Balance")]
+        public decimal InitialBalance { get; set; }
     }
 }
 

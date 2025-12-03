@@ -1,0 +1,14 @@
+﻿@model MVCBasicCurd.Models.User
+
+<h2>Delete User</h2>
+<div class="alert alert-danger">
+    Are you sure you want to delete <strong>@Model.FullName</strong>?
+    <br />
+    Warning: This will also delete their account <strong>@Model.AccountNumber</strong>.
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="UserId" />
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

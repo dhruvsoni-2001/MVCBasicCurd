@@ -1,32 +1,39 @@
 ﻿@model IEnumerable<MVCBasicCurd.Models.User>
-@{
-    ViewData["Title"] = "Admin - Users";
-}
-<h1>Users</h1>
-<a href="/Admin/Create">Create new user</a>
-<table class="table">
+
+<h2>User Management</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New User</a>
+</p>
+
+<table class="table table-bordered">
     <thead>
-        <tr><th>Business Id</th><th>Name</th><th>Email</th><th>Phone</th><th>Roles</th><th>Created</th></tr>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Primary Account</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
     </thead>
     <tbody>
-        @foreach (var u in Model)
+        @foreach (var item in Model)
         {
             <tr>
-                <td>@u.BusinessUserId</td>
-                <td>@u.FullName</td>
-                <td>@u.Email</td>
-                <td>@u.PhoneNumber</td>
+                <td>@item.FullName</td>
+                <td>@item.Email</td>
                 <td>
-                    @if (u.UserRoles != null && u.UserRoles.Any())
+                    @item.AccountNumber
+                </td>
+                <td>
+                    @foreach (var role in item.UserRoles)
                     {
-                        @string.Join(", ", u.UserRoles.Select(ur => ur.Role?.Name))
-                    }
-                    else
-                    {
-                        <em>None</em>
+                        <span class="badge bg-secondary">@role.Role.Name</span>
                     }
                 </td>
-                <td>@u.CreatedAt.ToString("g")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>

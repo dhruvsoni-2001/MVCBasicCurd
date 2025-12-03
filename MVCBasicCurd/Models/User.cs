@@ -8,40 +8,30 @@ namespace MVCBasicCurd.Models
         [Key]
         public Guid UserId { get; set; } = Guid.NewGuid();
 
-        [Required]
-        [MaxLength(100)]
+        [Required, MaxLength(100)]
         public string FullName { get; set; } = null!;
 
-        [Required]
-        [EmailAddress]
-        [MaxLength(150)]
+        [Required, EmailAddress, MaxLength(150)]
         public string Email { get; set; } = null!;
 
-        [Required]
-        [Phone]
-        [MaxLength(20)]
+        // Fixed syntax error here
+        [MaxLength(32)]
+        public string? AccountNumber { get; set; } // Stores the primary account number for easy display
+
+        [Required, Phone, MaxLength(20)]
         public string PhoneNumber { get; set; } = null!;
 
-        [Required]
-        [MaxLength(200)]
+        [Required, MaxLength(200)]
         public string Address { get; set; } = null!;
 
-        /// <summary>
-        /// Business-facing unique id (e.g. USER-000123). Not the PK, but useful for display.
-        /// </summary>
-        [Required]
-        [MaxLength(50)]
+        [Required, MaxLength(50)]
         public string BusinessUserId { get; set; } = null!;
 
-        // Navigation: user can own multiple accounts
-        public ICollection<Account> Accounts { get; set; } = new List<Account>();
-
-        // Created / Updated timestamps (optional)
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
 
-        // inside Models/User.cs
+        // Navigation
+        public ICollection<Account> Accounts { get; set; } = new List<Account>();
         public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
-
     }
 }
